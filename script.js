@@ -3,6 +3,7 @@ const add=document.querySelector("#add");
 const cancel=document.querySelector("#cancel");
 const form=document.querySelector("form");
 const submitBook=document.querySelector("#submitBook")
+const remove=document.querySelector("#removeButton");
 
 
 function Book(title,author,pageNo,id){
@@ -37,8 +38,7 @@ function displayLibrary(title,author,pageNo,id){
     const card=
     
     `
-        <div class="container" data-id="${id}" >
-        <div class="card">
+        <div class="card" data-id="${id}">
             <div class="titleBar">${title}</div>
             <div class="content">
                  <ul>
@@ -48,15 +48,13 @@ function displayLibrary(title,author,pageNo,id){
             </div>
             <div class="options">
                 <ul>
-                    <button type="button" id="remove" name="remove">Remove</button>
+                    <button onclick="removeBook(this)" data-remove-id="${id}" type="button" id="removeButton" name="remove">Remove</button>
                     <button type="button" id="edit" name="edit">Edit</li>
                 </ul>
             </div>
         </div>
-    </div>
     `;
     container.innerHTML+=card;
-
 }
 
 function addBookForm(){
@@ -71,6 +69,20 @@ function cancelAddBook(){
     cancel.addEventListener("click",()=>{
         form.style.display="none";
     })
+}
+
+function removeBook(e){
+
+                console.log("remove clicked");
+                const cards=document.querySelectorAll(".card");
+                cards.forEach((card)=>{
+                    if(card.dataset.id==e.dataset.removeId){
+                        while(card.firstChild){
+                            card.removeChild(card.firstChild);
+                        }
+                        card.remove();
+                    }
+                });
 }
 
 
