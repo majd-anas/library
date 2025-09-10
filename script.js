@@ -1,5 +1,8 @@
 const lib=[];
-let add=document.querySelector("#add");
+const add=document.querySelector("#add");
+const cancel=document.querySelector("#cancel");
+const form=document.querySelector("form");
+const submitBook=document.querySelector("#submitBook")
 
 function Book(title,author,read,id){
     this.title=title;
@@ -10,16 +13,38 @@ function Book(title,author,read,id){
 
 
 function addBookToLibrary(title,author,read){
-    let book=new Book(title,author,read,crypto.randomUUID());
-    lib.push(book);
+
+    submitBook.addEventListener("click",()=>{
+        let title=document.querySelector("#bookTitle").value;
+        let author=document.querySelector("#bookAuthor").value;
+        let pageNo=document.querySelector("#bookPages").value;
+        let book=new Book(title,author,read,crypto.randomUUID());
+        lib.push(book);
+    });
+    
+
 }
 
 function displayLibrary(){
-    for(let book of lib){
-        //creat the cards
+    lib.forEach((book)=>{
+        
+    });
+}
+
+function addBookForm(){
+    add.addEventListener("click",()=>{
+            console.log("add clicked");
+            form.style.display="flex";
     }
+    )
 }
 
-function addNewBook(){
-
+function cancelAddBook(){
+    cancel.addEventListener("click",()=>{
+        form.style.display="none";
+    })
 }
+
+
+addBookForm();
+cancelAddBook();
