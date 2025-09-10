@@ -8,16 +8,34 @@
     <title>Library</title>
 </head>
 <body>
+
     <div class="banner">
         <h2>Library Of Your Own</h2>
         <nav>
             <ul>
-                <button id="theme" name="theme">theme</button>
-                <button id="add" name="add">+</button>
+                <button type="button" id="theme" name="theme">theme</button>
+                <button type="button" id="add" name="add">+</button>
             </ul>
         </nav>
     </div>
-    
+       
+   <form id="bookForm" action="post">
+
+        <button type="button" id="cancel">x</button>
+        <div>
+            <label for="bookTitle">Book Title</label><input id="bookTitle" type="text">
+        </div>
+        <div>
+            <label for="bookAuthor">Author name</label><input id="bookAuthor"type="text">
+        </div>
+        <div>
+            <label for="bookPages">Number of Pages</label><input id="bookPages"type="text">
+        </div>
+        
+
+        <button type="button" id="submitBook">Add Book</button>
+   </form>
+   
     <!--books added to the library-->
     <div class="container">
         <div class="card">
@@ -29,13 +47,13 @@
             </div>
             <div class="options">
                 <ul>
-                    <button id="remove" name="remove">Remove</button>
-                    <button id="edit" name="edit">Edit</li>
+                    <button type="button" id="remove" name="remove">Remove</button>
+                    <button type="button" id="edit" name="edit">Edit</li>
                 </ul>
             </div>
         </div>
     </div>
-   
-   
+
+
 </body>
 </html>

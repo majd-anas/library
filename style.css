@@ -4,6 +4,8 @@
 }
 body{
     height: 100vh;
+    position: relative;
+    background-color: #C3B6C9;
 }
 .banner{
     color:white;
@@ -33,6 +35,7 @@ ul{
     gap:50px;
     background-color:#C3B6C9;
     height: 100%;
+    
 }
 .card{
     background-color: white;
@@ -80,4 +83,61 @@ ul{
     font-size: small;
 }
 
+form{
+    position: absolute;
+    background-color: #E28DB0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:50%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    padding-right: 50px;
+    border-radius: 30px;
+    display: none;
+}
+
+form div{
+    margin-left:20px;
+    display: flex;
+    gap:20px;
+    width: 96%;
+    align-items: center;
+
+}
+
+form #cancel{
+    background-color: white;
+    color: #E28DB0;
+    padding:5px 10px;
+    border-radius: 50%;
+    position: absolute;
+    top:7px;
+    right:15px;
+}
+label{
+    display: block;
+    font-size: medium;
+    color:white;
+}
+
+form input{
+    border: none;
+    flex-grow:1;
+    padding:5px;
+    font-size: medium;
+    border-radius:30px ;
+}
+
+form button{
+    border:none;
+    background-color: white;
+    color:#E28DB0;
+    padding:5px 20px;
+    border-radius:30px ;
+    align-self: flex-end;
+}
 
