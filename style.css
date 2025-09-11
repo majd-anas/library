@@ -66,16 +66,23 @@ ul{
 .options{
     margin-bottom: 20px;
     align-self: flex-end;
-}
-
-.options ul{
     display: flex;
-    list-style: none;
     gap:3px;
+    padding:5px 20px;
+    gap:10px;
 }
 
-.options ul button{
+
+.options button{
     border: none;
+    color: white;
+    background-color: #C3B6C9;
+    border-radius: 30px;
+    padding:3px 10px;
+    font-size: small;
+}
+
+.options label{
     color: white;
     background-color: #C3B6C9;
     border-radius: 30px;

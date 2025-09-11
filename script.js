@@ -6,7 +6,7 @@ const submitBook=document.querySelector("#submitBook")
 const remove=document.querySelector("#removeButton");
 
 
-function Book(title,author,pageNo,id){
+function Book(title,author,pageNo,read,id){
     this.title=title;
     this.author=author;
     this.id=id;
@@ -15,6 +15,19 @@ function Book(title,author,pageNo,id){
 }
 
 
+// Book.prototype.read=function(){
+
+//         if(readButton.checked)
+//             this.read=true;
+//         else
+//             this.read=false;
+
+// }
+
+// readButton.addEventListener("click",()=>{
+
+// });
+
 function addBookToLibrary(){
 
     submitBook.addEventListener("click",()=>{
@@ -22,16 +35,16 @@ function addBookToLibrary(){
         let title=document.querySelector("#bookTitle").value;
         let author=document.querySelector("#bookAuthor").value;
         let pageNo=document.querySelector("#bookPages").value;
-        let book=new Book(title,author,pageNo,crypto.randomUUID());
+        let book=new Book(title,author,pageNo,false,crypto.randomUUID());
         let id=book.id;
         lib.push(book);
-        displayLibrary(title,author,pageNo,id);
+        displayLibrary(title,author,pageNo,false,id);
     });
 
     
 }
 
-function displayLibrary(title,author,pageNo,id){
+function displayLibrary(title,author,pageNo,read,id){
 
     const container=document.querySelector(".container");
 
@@ -46,15 +59,22 @@ function displayLibrary(title,author,pageNo,id){
                     <li>Pages ${pageNo} </li>
                  </ul>
             </div>
-            <div class="options">
-                <ul>
-                    <button onclick="removeBook(this)" data-remove-id="${id}" type="button" id="removeButton" name="remove">Remove</button>
-                    <button type="button" id="edit" name="edit">Edit</li>
-                </ul>
+            <div class="options" >
+                    <button onclick="removeBook(this)" data-remove-id="${id}" type="button" class="removeButton" name="remove">Remove</button>
             </div>
         </div>
     `;
     container.innerHTML+=card;
+    const options=document.querySelector(`[data-id="${id}"] .options`);
+
+    const readButton=document.createElement("input");
+    readButton.type="checkbox";
+    readButton.setAttribute('id',id);
+    const readLabel=document.createElement("label");
+    readLabel.setAttribute("for",id);
+    readLabel.textContent="read";
+    readLabel.setAttribute("data-readId",id);
+    options.append(readLabel,readButton);
 }
 
 function addBookForm(){
