@@ -15,18 +15,19 @@ function Book(title,author,pageNo,read,id){
 }
 
 
-// Book.prototype.read=function(){
+Book.prototype.readStatus=function(){
+        const readBttn=document.querySelector(`[data-readId="${this.id}"]`);
+        if(readBttn.checked)
+            this.read=true;
+        else
+            this.read=false;
 
-//         if(readButton.checked)
-//             this.read=true;
-//         else
-//             this.read=false;
+}
 
-// }
-
-// readButton.addEventListener("click",()=>{
-
-// });
+function readClicked(book){
+    book.readStatus();
+    console.log(`${book.title} reading status: ${book.read}`);
+}
 
 function addBookToLibrary(){
 
@@ -38,43 +39,45 @@ function addBookToLibrary(){
         let book=new Book(title,author,pageNo,false,crypto.randomUUID());
         let id=book.id;
         lib.push(book);
-        displayLibrary(title,author,pageNo,false,id);
+        displayLibrary(book);
     });
 
     
 }
 
-function displayLibrary(title,author,pageNo,read,id){
+function displayLibrary(book){
 
     const container=document.querySelector(".container");
 
     const card=
     
     `
-        <div class="card" data-id="${id}">
-            <div class="titleBar">${title}</div>
+        <div class="card" data-id="${book.id}">
+            <div class="titleBar">${book.title}</div>
             <div class="content">
                  <ul>
-                    <li>Author ${author} </li>
-                    <li>Pages ${pageNo} </li>
+                    <li>Author ${book.author} </li>
+                    <li>Pages ${book.pageNo} </li>
                  </ul>
             </div>
             <div class="options" >
-                    <button onclick="removeBook(this)" data-remove-id="${id}" type="button" class="removeButton" name="remove">Remove</button>
+                    <button onclick="removeBook(this)" data-remove-id="${book.id}" type="button" class="removeButton" name="remove">Remove</button>
             </div>
         </div>
     `;
     container.innerHTML+=card;
-    const options=document.querySelector(`[data-id="${id}"] .options`);
+    const options=document.querySelector(`[data-id="${book.id}"] .options`);
 
     const readButton=document.createElement("input");
     readButton.type="checkbox";
-    readButton.setAttribute('id',id);
+    readButton.setAttribute('id',book.id);
     const readLabel=document.createElement("label");
-    readLabel.setAttribute("for",id);
+    readLabel.setAttribute("for",book.id);
     readLabel.textContent="read";
-    readLabel.setAttribute("data-readId",id);
+    readButton.setAttribute("data-readId",book.id);
     options.append(readLabel,readButton);
+
+    readButton.addEventListener("click",()=>readClicked(book));
 }
 
 function addBookForm(){
