@@ -6,23 +6,25 @@ const submitBook=document.querySelector("#submitBook")
 const remove=document.querySelector("#removeButton");
 
 
-function Book(title,author,pageNo,read,id){
-    this.title=title;
-    this.author=author;
-    this.id=id;
-    this.pageNo=pageNo;
-
-}
-
-
-Book.prototype.readStatus=function(){
+class Book{ 
+    constructor(title,author,pageNo,read,id){
+        this.title=title;
+        this.author=author;
+        this.id=id;
+        this.pageNo=pageNo;
+    }
+    readStatus(){
         const readBttn=document.querySelector(`[data-readId="${this.id}"]`);
         if(readBttn.checked)
             this.read=true;
         else
             this.read=false;
 
+    }
 }
+
+
+
 
 function readClicked(book){
     book.readStatus();
